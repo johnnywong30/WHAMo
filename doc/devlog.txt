@@ -41,3 +41,9 @@ johnnyW -- 2019-03-26 22:41
 - Added .gitignore
 - Added work of hasifA, matthewM, and addisonH to README.md
 ==============================================================
+
+johnnyW -- 2019-03-26 23:28
+--------------------------------------------------------------
+- Added visual to README.md
+- Linked submodule 
+==============================================================
