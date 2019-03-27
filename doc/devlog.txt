@@ -23,4 +23,21 @@ johnnyW -- 2019-03-26 22:41
 - Created WHAMo repo
 - Added doc/devlog.txt
 - Added .gitignore
+- Added work of hasifA, matthewM, and addisonH to README.md
+==============================================================
+
+hasifA -- 2019-03-26 22:26
+--------------------------------------------------------------
+- Added description of our project
+- Explained why our data set is important
+==============================================================
+
+matthewM -- 2019-03-26 22:20
+--------------------------------------------------------------
+- Added plan on how to make our data set come alive
+==============================================================
+
+addisonH -- 2019-03-26 21:17
+--------------------------------------------------------------
+- Added plan on how to utilize D3
 ==============================================================
