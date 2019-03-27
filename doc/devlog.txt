@@ -18,12 +18,14 @@ ______   ______   __   __   __       ______   _______
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ==============================================================
 
-johnnyW -- 2019-03-26 22:41
+addisonH -- 2019-03-26 21:17
 --------------------------------------------------------------
-- Created WHAMo repo
-- Added doc/devlog.txt
-- Added .gitignore
-- Added work of hasifA, matthewM, and addisonH to README.md
+- Added plan on how to utilize D3
+==============================================================
+
+matthewM -- 2019-03-26 22:20
+--------------------------------------------------------------
+- Added plan on how to make our data set come alive
 ==============================================================
 
 hasifA -- 2019-03-26 22:26
@@ -32,12 +34,10 @@ hasifA -- 2019-03-26 22:26
 - Explained why our data set is important
 ==============================================================
 
-matthewM -- 2019-03-26 22:20
+johnnyW -- 2019-03-26 22:41
 --------------------------------------------------------------
-- Added plan on how to make our data set come alive
-==============================================================
-
-addisonH -- 2019-03-26 21:17
---------------------------------------------------------------
-- Added plan on how to utilize D3
+- Created WHAMo repo
+- Added doc/devlog.txt
+- Added .gitignore
+- Added work of hasifA, matthewM, and addisonH to README.md
 ==============================================================
