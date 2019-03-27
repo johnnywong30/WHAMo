@@ -27,4 +27,4 @@ On our bubble map, users will be able to zoom in and out of the map and pan to t
 We are going to have a bubble map that is similar to the one in gallery. Instead of using a map of the USA, we are going to use a map of all 5 boroughs of NYC and the bubbles will represent where car crashes occurred. We will also have hierarchical bars so users will be able to see information such as which borough had the most car accidents.
 
 ## Envisioned Visualization
-
+![](doc/visual.png)
