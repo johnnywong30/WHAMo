@@ -13,7 +13,7 @@ We plan to make our data come alive by displaying our data through interactive g
 
 Our visualization will show correlations between vehicle type, time of day, place of accident, and cause of accident. However, it will be unable to show any correlation with any qualitative data of the driver like race and age as well as the affiliated car company. This has the benefit of removing bias from the dataset.
 
-The user can interact with the data by using widgets such as sliders and radio buttons. Additionally, they can select data points and compare the selected data in new graphs to better visualize the data.
+The user can interact with the data by using widgets such as radio buttons to zoom into the map. Additionally, they can select data points and compare the selected data in new graphs to better visualize the data.
 
 Our visualization will allow the user to explore questions such as “What frequency do drivers in the evening crash their car” or “What borough has the most car crashes?” It will provoke questions such as “What was the condition of the car at that time?” and “Does the person involved in the car crash have a criminal history?”
 
