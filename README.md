@@ -1,4 +1,6 @@
 # WHAMo
+A web application that maps out neighborhoods in NYC with a history of motor vehicle collisions
+         
 SoftDev2  P#04
 ### by Johnny Wong, Hasif Ahmed, Matthew Ming, and Addison Huang
 
@@ -28,3 +30,21 @@ We are going to have a [bubble map that is similar to the one in gallery](https:
 
 ## Envisioned Visualization
 ![](doc/visual.png)
+
+## LAUNCH CODES
+#### Create a Virtual Environment
+Using a venv is important to create an isolated Python environment to run code with specific dependencies exclusive to the venv and not globally on the system.
+#### To create a venv
+1. In a terminal, navigate to the directory to store the venv in (eg. `cd ~/<venv_dir>`)
+2. Run `python3 -m venv <venv_name>`
+3. Activate your venv by running `source <venv_name>/bin/activate`
+4. Your computer's name should be proceeded by `(<venv_name>)` now. You are in the venv.
+5. It can be deactivated by running the command `deactivate`.
+6. The venv can be activated from any working directory by running `source ~/venv_name/bin/activate`.
+#### Install Dependencies
+After activating the venv, install our __dependencies__ by running `pip install -r <path-to-file>/requirements.txt`.
+#### Run _WHAMo_
+1. Run `python app.py`
+2. Open `localhost:5000` in a browser.
+
+
