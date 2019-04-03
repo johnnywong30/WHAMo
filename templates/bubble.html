@@ -6,6 +6,7 @@
     <meta charset="utf-8"/>
     <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
     <script src="{{url_for('static', filename='ny.json')}}"></script>
+    <script src="{{url_for('static', filename='new.json')}}"></script>
   </head>
   <body>
     <!-- Page elements and content go here. -->
@@ -45,10 +46,15 @@
       console.log(rows[0])
     };
 
-    /*
-    d3.csv("{{url_for('static', filename='NYPD_Motor_Vehicle_Collisions.csv')}}").then(function(data){
-      console.log(data[0]);
-    });*/
+    var accident = svg.append( "g" );
+
+accident.selectAll( "path" )
+	.data( accident_json.features )
+	.enter()
+	.append( "path" )
+	.attr( "fill", "#900" )
+	.attr( "stroke", "#999" )
+	.attr( "d", geoPath );
 
     </script>
   </body>

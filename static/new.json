@@ -1,0 +1,5 @@
+var accident_json = {
+"type": "FeatureCollection",
+                                                                                
+"features": [
+    { "type": "Feature", "id": 1, "properties": { "CASE_ENQUIRY_ID": 101000833162.0, "OPEN_DT": "05\/03\/2013 11:12:12 AM", "CLOSED_DT": null, "CASE_STATUS": "Open", "CLOSURE_REASON": "", "CASE_TITLE": "Rodent Activity", "SUBJECT": "Inspectional Services", "REASON": "Environmental Services", "TYPE": "Rodent Activity", "QUEUE": "ISD_Environmental Services (INTERNAL)", "Department": "ISD", "Location": "83-85 Cresthill Rd  Brighton  MA  02135", "fire_district": 11, "pwd_district": "04", "city_council_district": 9, "police_district": "D14", "neighborhood": "Allston \/ Brighton", "neighborhood_services_district": 15, "ward": "Ward 22", "precinct": 2211, "land_usage": "R2", "LOCATION_STREET_NAME": "83-85 Cresthill Rd", "LOCATION_ZIPCODE": 2135, "LATITUDE": 40.80627, "LONGITUDE": -73.926155, "Source": "Constituent Call" }, "geometry": { "type": "Point", "coordinates": [-73.926155,40.80627  ] } }]}
