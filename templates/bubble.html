@@ -41,6 +41,15 @@
     .attr( "stroke", "#333")
     .attr( "d", geoPath );
 
+    var doRows = function (rows){
+      console.log(rows[0])
+    };
+
+    /*
+    d3.csv("{{url_for('static', filename='NYPD_Motor_Vehicle_Collisions.csv')}}").then(function(data){
+      console.log(data[0]);
+    });*/
+
     </script>
   </body>
 </html>
