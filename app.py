@@ -14,7 +14,7 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('bubble.html')
 
 if __name__ == '__main__':
     app.debug = True

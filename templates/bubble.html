@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
     <title>Mapping with D3</title>
     <meta charset="utf-8"/>
     <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <script src="../data/ny.json" type="application/json"></script>
+    <script src="{{url_for('static', filename='ny.json')}}"></script>
   </head>
   <body>
     <!-- Page elements and content go here. -->
     <script>
       // Our D3 code will go here.
-      var width = 700;
-      var height = 580;
+      var width = 900;
+      var height = 780;
 
       // Create SVG
       var svg = d3.select( "body" )
@@ -25,7 +25,7 @@
       var g = svg.append( "g" );
 
       var albersProjection = d3.geoAlbers()
-      .scale( 190000 )
+      .scale( 100000 )
       .rotate( [74.0060,0] )
       .center( [0, 40.7128] )
       .translate( [width/2,height/2] );
@@ -41,6 +41,6 @@
     .attr( "stroke", "#333")
     .attr( "d", geoPath );
 
-    </script>	
+    </script>
   </body>
 </html>
