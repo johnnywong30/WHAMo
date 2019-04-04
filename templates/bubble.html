@@ -4,11 +4,34 @@
   <head>
     <title>Mapping with D3</title>
     <meta charset="utf-8"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
     <script src="{{url_for('static', filename='ny.json')}}"></script>
     <script src="{{url_for('static', filename='new.json')}}"></script>
   </head>
   <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">New York City Car Accidents</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Map <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">List of Cities</a>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
     <!-- Page elements and content go here. -->
     <script>
       // Our D3 code will go here.
@@ -40,7 +63,7 @@
       .append( "path" )
       .attr( "fill", "#ccc" )
       .attr( "stroke", "#333")
-      .attr( "d", geoPath );      
+      .attr( "d", geoPath );
 
       var accident = svg.append( "g" );
 
@@ -63,7 +86,7 @@
       console.log(array);
       svg.selectAll("circle").data(array).enter().append("path").attr("fill","#900").attr("stroke","#999").attr("d",geoPath);
     });
-      
+
     </script>
   </body>
 </html>
