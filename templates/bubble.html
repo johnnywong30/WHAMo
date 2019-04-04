@@ -42,7 +42,7 @@
       .attr( "stroke", "#333")
       .attr( "d", geoPath );      
 
-      var accident = svg.append( "g" );
+      //var accident = svg.append( "g" );
 
       /*accident.selectAll( "path" )
       .data( accident_json.features )
@@ -52,16 +52,26 @@
       .attr( "stroke", "#999" )
       .attr( "d", geoPath );*/
 
+      var add=svg.append("g")
+
       d3.csv("{{url_for('static', filename='new.csv')}}").then(function(data){
       console.log(data[0]);
-      console.log(data[0]["LOCATION"].slice(1,data[0]["LOCATION"].length-1).split(", ", 2).map(Number));
+      //console.log(data[0]["LOCATION"].slice(1,data[0]["LOCATION"].length-1).split(", ", 2).map(Number));
       var array = data[0]["LOCATION"].slice(1,data[0]["LOCATION"].length-1).split(", ", 2).map(Number);
       console.log(array);
       var temp = array[0];
       array[0] = array[1];
-      array[1] = array[0];
+      array[1] = temp;
       console.log(array);
-      svg.selectAll("circle").data(array).enter().append("path").attr("fill","#900").attr("stroke","#999").attr("d",geoPath);
+      //console.log(d3.geoProjection(array));
+      //add.selectAll("path").data(array).enter().append("path").attr("fill","#900").attr("stroke","#999").attr("d",geoPath);
+      /*add.selectAll("circle")
+      .data(array).enter()
+      .append("circle")
+      .attr("cx",project(array))
+      .attr("cy",projection(array[1]))
+      .attr("r","10px")
+      .attr("fill","red")*/
     });
       
     </script>
