@@ -10,28 +10,28 @@
     <script src="{{url_for('static', filename='new.json')}}"></script>
   </head>
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">New York City Car Accidents</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">New York City Car Accidents</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Map <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">List of Cities</a>
-        </li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Map <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">List of Cities</a>
+          </li>
 
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+	</ul>
+	<form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	</form>
+      </div>
+    </nav>
     <!-- Page elements and content go here. -->
     <script>
       // Our D3 code will go here.
@@ -56,7 +56,7 @@
 
       var geoPath = d3.geoPath()
       .projection( albersProjection );
-
+      
       g.selectAll( "path" )
       .data( neighborhoods_json.features )
       .enter()
@@ -64,7 +64,8 @@
       .attr( "fill", "#ccc" )
       .attr( "stroke", "#333")
       .attr( "d", geoPath );
-
+      
+      
       //var accident = svg.append( "g" );
 
       /*accident.selectAll( "path" )
@@ -75,27 +76,41 @@
       .attr( "stroke", "#999" )
       .attr( "d", geoPath );*/
 
-      var add=svg.append("g")
 
       d3.csv("{{url_for('static', filename='new.csv')}}").then(function(data){
-      console.log(data[0]);
-      //console.log(data[0]["LOCATION"].slice(1,data[0]["LOCATION"].length-1).split(", ", 2).map(Number));
-      var array = data[0]["LOCATION"].slice(1,data[0]["LOCATION"].length-1).split(", ", 2).map(Number);
-      console.log(array);
-      var temp = array[0];
-      array[0] = array[1];
-      array[1] = temp;
-      console.log(array);
-      //console.log(d3.geoProjection(array));
-      //add.selectAll("path").data(array).enter().append("path").attr("fill","#900").attr("stroke","#999").attr("d",geoPath);
-      /*add.selectAll("circle")
-      .data(array).enter()
+      var long = data[1]["LONGITUDE"];
+      var lat = data[1]["LATITUDE"];
+      var array = [long,lat];
+      var g = svg.append("g");
+      console.log(albersProjection(array));
+      g.selectAll("circle")
+      .data(array)
+      .enter()
       .append("circle")
-      .attr("cx",project(array))
-      .attr("cy",projection(array[1]))
-      .attr("r","10px")
-      .attr("fill","red")*/
-    });
+      .attr("r","3px")
+      .attr("fill","red")
+      .attr("cx", albersProjection(array)[0])
+      .attr("cy", albersProjection(array)[1]);
+      var g = svg.append("g");
+      var long = data[0]["LONGITUDE"];
+      var lat = data[0]["LATITUDE"];
+      var array = [long,lat];
+      console.log(albersProjection(array));
+      g.selectAll("circle")
+      .data(array)
+      .enter()
+      .append("circle")
+      .attr("r","3px")
+      .attr("fill","red")
+      .attr("cx", albersProjection(array)[0])
+      .attr("cy", albersProjection(array)[1]);
+      
+      
+      }
+      );
+      
+      
+      
 
     </script>
   </body>
