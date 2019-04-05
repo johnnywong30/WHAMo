@@ -65,3 +65,19 @@ johnnyW & addisonH -- 2019-04-02 21:50
 - Added bubble.html, ny.json (to draw the map of NYC)
 - Displays map of NYC
 ==============================================================
+
+addisonH -- 2019-04-04 13:59
+--------------------------------------------------------------
+- Added ability to plot a dot onto map after reading csv file
+==============================================================
+
+addisonH -- 2019-04-04 18:59
+--------------------------------------------------------------
+- Filtered data set to be just accidents in 2018 to reduce load time
+==============================================================
+
+johnnyW -- 2019-04-05 16:27
+--------------------------------------------------------------
+- Optimized code to load dots quicker (about 20 seconds)
+- Can we optimize it more????
+==============================================================
