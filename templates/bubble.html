@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% block head %}
   <head>
     <title>Mapping with D3</title>
     <meta charset="utf-8"/>
@@ -8,9 +8,11 @@
     <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
     <script src="../static/ny.json"></script>
   </head>
+{% endblock %}
   <body>
+  {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">New York City Car Accidents</a>
+      <a class="navbar-brand" href="/">New York City Car Accidents</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
       </button>
@@ -18,22 +20,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	<ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Map <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Map <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">List of Cities</a>
+            <a class="nav-link" href="/streets">List of Streets</a>
           </li>
 
 	</ul>
-	<form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	</form>
+	
       </div>
     </nav>
+    {% endblock %}
+    {% block content %}
     <!-- Page elements and content go here. -->
     <script src="../static/map.js">
 
     </script>
+    {% endblock %}
   </body>
 </html>
