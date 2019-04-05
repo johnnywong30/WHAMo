@@ -66,48 +66,43 @@
       .attr( "d", geoPath );
       
       
-      //var accident = svg.append( "g" );
-
-      /*accident.selectAll( "path" )
-      .data( accident_json.features )
-      .enter()
-      .append( "path" )
-      .attr( "fill", "#900" )
-      .attr( "stroke", "#999" )
-      .attr( "d", geoPath );*/
-
-
-      d3.csv("{{url_for('static', filename='new.csv')}}").then(function(data){
-      var long = data[1]["LONGITUDE"];
-      var lat = data[1]["LATITUDE"];
+      d3.csv("{{url_for('static', filename='newdata.csv')}}").then(function(data){
+      for (i=0; i < 1000;i++) {
+      var long = data[i]["LONGITUDE"];
+      var lat = data[i]["LATITUDE"];
       var array = [long,lat];
       var g = svg.append("g");
-      console.log(albersProjection(array));
       g.selectAll("circle")
       .data(array)
       .enter()
       .append("circle")
-      .attr("r","3px")
+      .attr("r","1px")
       .attr("fill","red")
       .attr("cx", albersProjection(array)[0])
-      .attr("cy", albersProjection(array)[1]);
-      var g = svg.append("g");
-      var long = data[0]["LONGITUDE"];
-      var lat = data[0]["LATITUDE"];
-      var array = [long,lat];
-      console.log(albersProjection(array));
-      g.selectAll("circle")
-      .data(array)
-      .enter()
-      .append("circle")
-      .attr("r","3px")
-      .attr("fill","red")
-      .attr("cx", albersProjection(array)[0])
-      .attr("cy", albersProjection(array)[1]);
-      
-      
-      }
+      .attr("cy", albersProjection(array)[1]);   
+		    }
+		    }
       );
+
+      /*
+      d3.csv("{{url_for('static', filename='newdata.csv')}}").then(function(data){
+      var array = [];
+      for (i= 0; i < 10; i++) {
+		     array.push([data[i]["LONGITUDE"],data[i]["LATITUDE"]]);
+		     }
+		     console.log(array);
+		     var p = svg.append("g");
+		     p.selectAll("path")
+		     .data(array)
+		     .append("path")
+		     .attr("fill","#900")
+		     .attr("stroke","#999");
+		     .attr("d",d3.geoPath().projection(array));
+		     console.log("hi");
+		     }
+		     
+		     		     
+      );*/
       
       
       
