@@ -81,3 +81,11 @@ johnnyW -- 2019-04-05 16:27
 - Optimized code to load dots quicker (about 20 seconds)
 - Can we optimize it more????
 ==============================================================
+
+hasifA & johnnyW -- 2019-04-05 22:27
+--------------------------------------------------------------
+- Changed colors of dots based on borough
+- Dots are hover-able and a tooltip displays info about location,
+  injuries, deaths, and cause of accident
+- Added static/bubble.css
+==============================================================
