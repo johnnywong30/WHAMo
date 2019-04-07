@@ -20,7 +20,9 @@ def streets():
     input_file = csv.reader(open("static/newdata.csv"))
     next(input_file)
     return render_template('streets.html', data = input_file)
-
+@app.route('/graph')
+def map():
+    return render_template('graph.html')
 if __name__ == '__main__':
     app.debug = True
     app.run()
