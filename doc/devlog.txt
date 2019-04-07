@@ -89,3 +89,8 @@ hasifA & johnnyW -- 2019-04-05 22:27
   injuries, deaths, and cause of accident
 - Added static/bubble.css
 ==============================================================
+
+mingM -- 2019-04-06 21:27
+--------------------------------------------------------------
+- Added bar chart depicting total accidents per borough
+==============================================================
