@@ -10,22 +10,6 @@ var cleanStreetName = function (street){
     return ret;
 };
 
-var determineColor = function (row){
-    if (row["BOROUGH"] == "QUEENS") {
-	return "green";
-    } else if (row["BOROUGH"] == "BROOKLYN"){
-	return "blue";
-    } else if (row["BOROUGH"] == "MANHATTAN"){
-	return "red";
-    } else if (row["BOROUGH"] == "BRONX"){
-	return "yellow";
-    }else {
-	return "purple";
-    }
-};
-
-
-
 // Our D3 code will go here.
 var width = 900;
 var height = 780;
@@ -66,37 +50,42 @@ g.selectAll( "path" )
 
 // init div of tooltip
 // init div informing user of load time
-var div = d3.select("body").append("div")
+var startDiv = d3.select("body").append("div")
     .attr("class", "info_box")
     .html("<b>HOLD ON THIS MIGHT TAKE A WHILE<br>LOADING 93000+ ROWS OF DATA!!!</b>")
 
-
+var tooltip;
 
 // load data of motor vehicle accidents onto map
 var accidents = [];
 d3.csv("../static/newdata.csv").then(function(data){
-    for (i=0; i < data.length;i++) {
+    for (i=0; i < 10000;i++) {
         accidents.push(data[i])
     };
     console.log(accidents);
-    div.style("opacity", 0);
+    startDiv.remove();
     var circles = svg.selectAll("circle")
         .data(accidents)
         .enter()
         .append("circle")
-        .attr("r", "1px") //
-        .attr("fill", function(d){ // each accident is loaded as d
-            return determineColor(d);
+        .attr("class", function(d){
+          if (d["BOROUGH"] != "STATEN ISLAND"){
+            return d["BOROUGH"].charAt(0).toUpperCase() + d["BOROUGH"].slice(1).toLowerCase();
+          } else {
+            return "FakeBorough";
+          }
         })
+        .attr("r", "2.5px") //
         .attr("cx", function(d){
             return albersProjection([d["LONGITUDE"], d["LATITUDE"]])[0];
         })
         .attr("cy", function(d){
             return albersProjection([d["LONGITUDE"], d["LATITUDE"]])[1];
         })
-    //.attr("class", d["BOROUGH"])
         .on("mouseover", function(d){
-            div.transition()
+            tooltip = d3.select("body").append("div")
+                        .attr("class", "info_box")
+            tooltip.transition()
                 .duration(200)
                 .style("opacity", .9);
             var injuries = (parseInt(d["NUMBER OF PERSONS INJURED"]) +
@@ -112,41 +101,39 @@ d3.csv("../static/newdata.csv").then(function(data){
 
             var borough = d["BOROUGH"].charAt(0).toUpperCase() + d["BOROUGH"].slice(1).toLowerCase();
 
-            div.html(`<b>Borough:</b> ${borough} <br>
+            tooltip.html(`<b>Borough:</b> ${borough} <br>
                         ${cleanStreetName(d["ON STREET NAME"])}& ${cleanStreetName(d["CROSS STREET NAME"])} <br>
                         <b>Injuries: </b>${injuries} <br> <b>Deaths: </b>${deaths} <br>
                         <b>Contributing Factor: </b>${d["CONTRIBUTING FACTOR VEHICLE 1"]}
                        `
                     )
-		.style("left", (d3.event.pageX) + "px")
-		.style("top", (d3.event.pageY - 28) + "px");
+		            .style("left", (d3.event.pageX) + "px")
+		            .style("top", (d3.event.pageY - 28) + "px");
         })
         .on("mouseout", function(d){
-            div.transition()
-                .duration(500)
-                .style("opacity", 0);
-	})
-	.on("mouseclick", function(d){
-	    var injuries = (parseInt(d["NUMBER OF PERSONS INJURED"]) +
+            tooltip.remove();
+	         })
+	      .on("click", function(d){
+
+      	    var injuries = (parseInt(d["NUMBER OF PERSONS INJURED"]) +
                             parseInt(d["NUMBER OF PEDESTRIANS INJURED"]) +
                             parseInt(d["NUMBER OF CYCLIST INJURED"]) +
                             parseInt(d["NUMBER OF MOTORIST INJURED"])
-                           ).toString();
+                            ).toString();
             var deaths = (parseInt(d["NUMBER OF PERSONS INJURED"]) +
                           parseInt(d["NUMBER OF PEDESTRIANS INJURED"]) +
                           parseInt(d["NUMBER OF CYCLIST INJURED"]) +
                           parseInt(d["NUMBER OF MOTORIST INJURED"])
-                         ).toString();
-
-            var borough = d["BOROUGH"].charAt(0).toUpperCase() ``+ d["BOROUGH"].slice(1).toLowerCase();
-	    var factor = d["CONTRIBUTING FACTOR VEHICLE 1"]
-	    var street = d["ON STREET NAME"] + " & " + d["CROSS STREET NAME"]
-	    var html = "<table> <tr> <td> Borough </td> <td> Street </td> <td> Injuries </td> <td>  Deaths </td> <td> Contributing Factor </td> </tr> <tr> <td>" +
-		borough + "</td> <td>" +street + "</td> <td>" + injuries + "</td> <td>" + deaths + "</td> <td>" + factor + "</td> </tr> </table>";
-	    doucment.body.appendChild(html);
-	    console.log("done");
-
-	    
-	});
+                          ).toString();
+            var borough = d["BOROUGH"].charAt(0).toUpperCase() + d["BOROUGH"].slice(1).toLowerCase();
+      	    var factor = d["CONTRIBUTING FACTOR VEHICLE 1"]
+      	    var street = d["ON STREET NAME"] + " & " + d["CROSS STREET NAME"]
+      	    var html = "<table> <tr> <td> Borough </td> <td> Street </td> <td> Injuries </td> <td>  Deaths </td> <td> Contributing Factor </td> </tr> <tr> <td>" +
+      		              borough + "</td> <td>" +street + "</td> <td>" + injuries + "</td> <td>" + deaths + "</td> <td>" + factor + "</td> </tr> </table>";
+      	    var newDiv = document.createElement("div");
+            newDiv.innerHTML = html;
+            console.log(newDiv);
+      	    console.log("done");
+	         });
 
 });

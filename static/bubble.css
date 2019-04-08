@@ -22,6 +22,37 @@ div.info_box{
   border-radius: 8px;
 }
 
-.BROOKLYN{
-    color:red;
+.Brooklyn{
+  fill: blue;
 }
+
+.Queens{
+  fill: green;
+}
+
+.Manhattan{
+  fill: red;
+}
+
+.Bronx{
+  fill:yellow;
+}
+
+.FakeBorough{
+  fill:purple;
+}
+
+
+var determineColor = function (row){
+    if (row["BOROUGH"] == "QUEENS") {
+	return "green";
+    } else if (row["BOROUGH"] == "BROOKLYN"){
+	return "blue";
+    } else if (row["BOROUGH"] == "MANHATTAN"){
+	return "red";
+    } else if (row["BOROUGH"] == "BRONX"){
+	return "yellow";
+    }else {
+	return "purple";
+    }
+};

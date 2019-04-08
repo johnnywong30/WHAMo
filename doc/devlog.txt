@@ -94,3 +94,10 @@ mingM -- 2019-04-06 21:27
 --------------------------------------------------------------
 - Added bar chart depicting total accidents per borough
 ==============================================================
+
+johnnyW -- 2019-04-07 20:23
+--------------------------------------------------------------
+- Added css borough classes to give circles a fill color
+- Used d3.remove() instead of making tooltips opacity 0 to delete them
+  from the DOM
+==============================================================
