@@ -8,6 +8,7 @@
     <link href="../static/bubble.css" rel="stylesheet">
     <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
     <script src="../static/ny.json"></script>
+	<script src="https://unpkg.com/d3-simple-slider"></script>
   </head>
 {% endblock %}
   <body>
@@ -32,6 +33,12 @@
 	      </ul>
       </div>
   </nav>
+  <div class="container">
+  <div class="row align-items-center">
+    <div class="col-sm"><div id="slider-time"></div></div>
+	<div class="col-sm-3"><p id="text-time"></p></div>
+  </div>
+</div>
     {% endblock %}
     {% block content %}
     {% endblock %}

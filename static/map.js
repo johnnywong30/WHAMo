@@ -66,7 +66,7 @@ document.body.appendChild(info);
 // load data of motor vehicle accidents onto map
 var accidents = [];
 d3.csv("../static/newdata.csv").then(function(data){
-    for (i=0; i < 10000;i++) {
+	 for (i=0; i < 10000;i++) {
         accidents.push(data[i]) // load data set
     };
     console.log(accidents);
@@ -158,3 +158,97 @@ d3.csv("../static/newdata.csv").then(function(data){
 	});
 
 });
+//Sliders
+	var dict ={
+	"Jan":0,
+	"Feb":0,
+	"Mar":0,
+	"Apr":0,
+	"May":0,
+	"Jun":0,
+	"Jul":0,
+	"Aug":0,
+	"Sep":0,
+	"Oct":0,
+	"Nov":0,
+	"Dec":0
+	};
+d3.csv("../static/newdata.csv").then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+		time=parseInt(data[i].DATE[0]+data[i].DATE[1]);
+		if(time==1){
+        dict["Jan"]++;
+		}
+		if(time==2){
+        dict["Feb"]++;
+		}
+		if(time==3){
+        dict["Mar"]++;
+		}
+		if(time==4){
+        dict["Apr"]++;
+		}
+		if(time==5){
+        dict["May"]++;
+		}
+		if(time==6){
+        dict["Jun"]++;
+		}
+		if(time==7){
+        dict["Jul"]++;
+		}
+		if(time==8){
+        dict["Aug"]++;
+		}
+		if(time==9){
+        dict["Sep"]++;
+		}
+		if(time==10){
+        dict["Oct"]++;
+		}
+		if(time==11){
+        dict["Nov"]++;
+		}
+		if(time==12){
+        dict["Dec"]++;
+		}
+    }
+});
+  var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  // Time
+  var dataTime = d3.range(0, 12).map(function(d) {
+    return new Date(2018, d, 3);
+  });
+
+  var sliderTime = d3
+    .sliderBottom()
+    .min(d3.min(dataTime))
+    .max(d3.max(dataTime))
+    .step(1000 * 60 * 60 * 24 * 31)
+    .width(300)
+    .tickFormat(d3.timeFormat('%b'))
+    .tickValues(dataTime)
+    .default(new Date(2018, 0, 3))
+    .on('onchange', val => {
+      //d3.select('p#value-time').text(d3.timeFormat('%b')(val));
+	  //d3.select('p#text-time').text(dict[d3.timeFormat('%b')(val)]);
+total=0
+	  for(i=0;i<d3.timeFormat('%m')(val);i++){
+			total+=dict[months[i]];
+};
+	end=total;
+
+	//d3.select('p#text-time').text(total);
+    });
+
+  var gTime = d3
+    .select('div#slider-time')
+    .append('svg')
+    .attr('width', 500)
+    .attr('height', 100)
+    .append('g')
+    .attr('transform', 'translate(30,30)');
+
+  gTime.call(sliderTime);
+
+  d3.select('p#value-time').text(d3.timeFormat('%b')(sliderTime.value()));
