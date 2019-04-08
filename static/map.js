@@ -70,7 +70,7 @@ var accidents = [];
 	 for (i=a; i < b;i++) {
         accidents.push(data[i]) // load data set
     };
-	d3.selectAll("circles").remove();
+	d3.selectAll("circle").remove();
     console.log(accidents);
     // remove loading tip
     tooltip.remove();
