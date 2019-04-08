@@ -1,3 +1,5 @@
+
+
 // helper fxn
 
 var cleanStreetName = function (street){
@@ -48,37 +50,40 @@ g.selectAll( "path" )
   UNIQUE KEY,VEHICLE TYPE CODE 1,VEHICLE TYPE CODE 2,VEHICLE TYPE CODE 3,VEHICLE TYPE CODE 4,VEHICLE TYPE CODE 5
 */
 
-// init div of tooltip
-// init div informing user of load time
-var startDiv = d3.select("body").append("div")
-    .attr("class", "info_box")
-    .html("<b>HOLD ON THIS MIGHT TAKE A WHILE<br>LOADING 93000+ ROWS OF DATA!!!</b>")
-
-var tooltip;
+// init loading warning and var to be used as tooltip
+var tooltip = svg.append("g")
+      .style("fill", "black")
+      .style("font-size", "22px");
+    tooltip.append("text")
+      .attr("x", 20)
+      .attr("y", 30)
+      .text("LOADING DATA...");
 
 var info = document.createElement("div");
 info.classList.add("info");
 document.body.appendChild(info);
+
 // load data of motor vehicle accidents onto map
 var accidents = [];
 d3.csv("../static/newdata.csv").then(function(data){
     for (i=0; i < 10000;i++) {
-        accidents.push(data[i])
+        accidents.push(data[i]) // load data set
     };
     console.log(accidents);
-    startDiv.remove();
+    // remove loading tip
+    tooltip.remove();
     var circles = svg.selectAll("circle")
         .data(accidents)
         .enter()
         .append("circle")
         .attr("class", function(d){
             if (d["BOROUGH"] != "STATEN ISLAND"){
-		return d["BOROUGH"].charAt(0).toUpperCase() + d["BOROUGH"].slice(1).toLowerCase();
+		            return d["BOROUGH"].charAt(0).toUpperCase() + d["BOROUGH"].slice(1).toLowerCase();
             } else {
-		return "FakeBorough";
+		            return "FakeBorough";
             }
-        })
-        .attr("r", "2.5px") //
+          })
+        .attr("r", "2.5px")
         .attr("cx", function(d){
             return albersProjection([d["LONGITUDE"], d["LATITUDE"]])[0];
         })
@@ -86,11 +91,8 @@ d3.csv("../static/newdata.csv").then(function(data){
             return albersProjection([d["LONGITUDE"], d["LATITUDE"]])[1];
         })
         .on("mouseover", function(d){
-            tooltip = d3.select(".info").append("div")
-                .attr("class", "info_box")
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", .9);
+            // init vars
+            var street = `${cleanStreetName(d["ON STREET NAME"])}& ${cleanStreetName(d["CROSS STREET NAME"])}`
             var injuries = (parseInt(d["NUMBER OF PERSONS INJURED"]) +
                             parseInt(d["NUMBER OF PEDESTRIANS INJURED"]) +
                             parseInt(d["NUMBER OF CYCLIST INJURED"]) +
@@ -103,21 +105,36 @@ d3.csv("../static/newdata.csv").then(function(data){
                          ).toString();
 
             var borough = d["BOROUGH"].charAt(0).toUpperCase() + d["BOROUGH"].slice(1).toLowerCase();
+            //  write out tooltip
+            tooltip = svg.append("g")
+              .style("fill", "black")
+              .style("font-size", "22px");
+            tooltip.append("text")
+              .attr("x", 20)
+              .attr("y", 30)
+              .text(`Borough: ${borough}`);
+            tooltip.append("text")
+              .attr("x", 20)
+              .attr("y", 55)
+              .text(street);
+            tooltip.append("text")
+              .attr("x", 20)
+              .attr("y", 80)
+              .text(`Injuries: ${injuries}`);
+            tooltip.append("text")
+              .attr("x", 20)
+              .attr("y", 105)
+              .text(`Deaths: ${deaths}`);
+            tooltip.append("text")
+              .attr("x", 20)
+              .attr("y", 130)
+              .text(`Contributing Factor: ${d["CONTRIBUTING FACTOR VEHICLE 1"]}`)
 
-            tooltip.html(`<b>Borough:</b> ${borough} <br>
-                        ${cleanStreetName(d["ON STREET NAME"])}& ${cleanStreetName(d["CROSS STREET NAME"])} <br>
-                        <b>Injuries: </b>${injuries} <br> <b>Deaths: </b>${deaths} <br>
-                        <b>Contributing Factor: </b>${d["CONTRIBUTING FACTOR VEHICLE 1"]}
-                       `
-			)
-		.style("left", (d3.event.pageX) + "px")
-		.style("top", (d3.event.pageY - 28) + "px");
         })
         .on("mouseout", function(d){
             tooltip.remove();
-	})
-	.on("click", function(d){
-
+	      })
+	      .on("click", function(d){
       	    var injuries = (parseInt(d["NUMBER OF PERSONS INJURED"]) +
                             parseInt(d["NUMBER OF PEDESTRIANS INJURED"]) +
                             parseInt(d["NUMBER OF CYCLIST INJURED"]) +
@@ -132,12 +149,12 @@ d3.csv("../static/newdata.csv").then(function(data){
       	    var factor = d["CONTRIBUTING FACTOR VEHICLE 1"]
       	    var street = d["ON STREET NAME"] + " & " + d["CROSS STREET NAME"]
       	    var html = "<table> <tr> <td> Borough </td> <td> Street </td> <td> Injuries </td> <td>  Deaths </td> <td> Contributing Factor </td> </tr> <tr> <td>" +
-      		borough + "</td> <td>" +street + "</td> <td>" + injuries + "</td> <td>" + deaths + "</td> <td>" + factor + "</td> </tr> </table> <br>" ;
+      		              borough + "</td> <td>" +street + "</td> <td>" + injuries + "</td> <td>" + deaths + "</td> <td>" + factor + "</td> </tr> </table> <br>" ;
       	    var newDiv = document.createElement("div");
             newDiv.innerHTML = html;
             console.log(newDiv);
       	    console.log("done");
-	    document.body.appendChild(newDiv);
+	          document.body.appendChild(newDiv);
 	});
 
 });
