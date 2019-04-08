@@ -244,6 +244,7 @@ total=0
   var gTime = d3
     .select('div#slider-time')
     .append('svg')
+    .attr("class", "slider")
     .attr('width', 500)
     .attr('height', 100)
     .append('g')

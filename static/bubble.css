@@ -1,9 +1,15 @@
 svg{
   background-color: lightblue;
-  border-radius: 8px;
+  border-top-left-radius: : 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 4px;
 
 }
 
+.slider{
+  border-radius: 0px;
+}
 
 .Brooklyn{
     fill: blue;
