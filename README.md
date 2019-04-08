@@ -43,6 +43,9 @@ Using a venv is important to create an isolated Python environment to run code w
 6. The venv can be activated from any working directory by running `source ~/venv_name/bin/activate`.
 #### Install Dependencies
 After activating the venv, install our __dependencies__ by running `pip install -r <path-to-file>/requirements.txt`.
+#### Data Files
+The necessary files might not have been cloned properly due to `git lfs`.
+If `static/newdata.csv` and `static/ny.json` do not exist, please download them directly from our repo page and save them in the `static` directory. 
 #### Run _WHAMo_
 1. Run `python app.py`
 2. Open `localhost:5000` in a browser.
