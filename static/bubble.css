@@ -1,58 +1,55 @@
 div.tooltip{
-  position: absolute;
-  text-align:center;
-  width: 60px;
-  height: 28px;
-  padding: 2px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 2px;
-  border-radius: 8px;
-  pointer-events: none;
+    position: absolute;
+    text-align:center;
+    width: 60px;
+    height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 2px;
+    border-radius: 8px;
+    pointer-events: none;
 }
 
 div.info_box{
-  float: right;
-  text-align: left;
-  width: 25%;
-  padding: 2px;
-  font: 18px sans-serif;
-  background: lightsteelblue;
-  border: 2px;
-  border-radius: 8px;
+    float: right;
+    text-align: left;
+    width: 25%;
+    padding: 2px;
+    font: 18px sans-serif;
+    background: lightsteelblue;
+    border: 2px;
+    border-radius: 8px;
 }
 
 .Brooklyn{
-  fill: blue;
+    fill: blue;
 }
 
 .Queens{
-  fill: green;
+    fill: green;
 }
 
 .Manhattan{
-  fill: red;
+    fill: red;
 }
 
 .Bronx{
-  fill:yellow;
+    fill:yellow;
 }
 
 .FakeBorough{
-  fill:purple;
+    fill:purple;
 }
 
+table, th, td{
+    border:1px solid red;
+}
 
-var determineColor = function (row){
-    if (row["BOROUGH"] == "QUEENS") {
-	return "green";
-    } else if (row["BOROUGH"] == "BROOKLYN"){
-	return "blue";
-    } else if (row["BOROUGH"] == "MANHATTAN"){
-	return "red";
-    } else if (row["BOROUGH"] == "BRONX"){
-	return "yellow";
-    }else {
-	return "purple";
-    }
-};
+table {
+    border-collapse:collapse;
+    width:75%;
+    height:20px;
+    text-align:center;
+    vertical-align:center; 
+}
