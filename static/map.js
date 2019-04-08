@@ -64,11 +64,13 @@ info.classList.add("info");
 document.body.appendChild(info);
 
 // load data of motor vehicle accidents onto map
-var accidents = [];
+var dead = function(a,b){
 d3.csv("../static/newdata.csv").then(function(data){
-	 for (i=0; i < 10000;i++) {
+var accidents = [];
+	 for (i=a; i < b;i++) {
         accidents.push(data[i]) // load data set
     };
+	d3.selectAll("circles").remove();
     console.log(accidents);
     // remove loading tip
     tooltip.remove();
@@ -157,7 +159,7 @@ d3.csv("../static/newdata.csv").then(function(data){
 	          document.body.appendChild(newDiv);
 	});
 
-});
+})};
 //Sliders
 	var dict ={
 	"Jan":0,
@@ -232,19 +234,29 @@ d3.csv("../static/newdata.csv").then(function(data) {
     .on('onchange', val => {
       //d3.select('p#value-time').text(d3.timeFormat('%b')(val));
 	  //d3.select('p#text-time').text(dict[d3.timeFormat('%b')(val)]);
-total=0
+total=0;
 	  for(i=0;i<d3.timeFormat('%m')(val);i++){
 			total+=dict[months[i]];
 };
 	end=total;
-
+console.log(end);
+total=0;
+	if(d3.timeFormat('%m')(val)==0){
+		dead(1,end);
+	}
+	else{
+		for(i=0;i<d3.timeFormat('%m')(val)-1;i++){
+			total+=dict[months[i]];
+		}
+console.log(total);
+	dead(total,end);
+	}
 	//d3.select('p#text-time').text(total);
     });
 
   var gTime = d3
     .select('div#slider-time')
     .append('svg')
-    .attr("class", "slider")
     .attr('width', 500)
     .attr('height', 100)
     .append('g')
